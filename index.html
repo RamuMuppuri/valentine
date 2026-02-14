@@ -1,1 +1,231 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Baby Kshithija 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: radial-gradient(circle at bottom, #1b2735, #090a0f);
+    overflow: hidden;
+    color: white;
+}
+
+/* Stars background */
+.star {
+    position: fixed;
+    width: 2px;
+    height: 2px;
+    background: white;
+    animation: twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle {
+    0%,100% { opacity: 0.2; }
+    50% { opacity: 1; }
+}
+
+/* Floating hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    font-size: 18px;
+    animation: floatUp 8s linear infinite;
+}
+@keyframes floatUp {
+    to { transform: translateY(-110vh); opacity: 0; }
+}
+
+/* Main Card */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    border-radius: 25px;
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 0 40px rgba(255, 0, 120, 0.4);
+}
+
+/* Title */
+h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.8rem;
+    color: #ff7eb3;
+    margin-bottom: 15px;
+}
+
+/* Slideshow */
+.slideshow img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    transition: 0.6s;
+}
+
+/* Buttons */
+button {
+    padding: 12px 28px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    margin: 10px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#yes-btn {
+    background: linear-gradient(45deg,#ff4d6d,#ff99c8);
+    color: white;
+}
+
+#yes-btn:hover {
+    transform: scale(1.1);
+}
+
+#no-btn {
+    background: white;
+    color: black;
+}
+
+/* Typewriter effect */
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid pink;
+    animation: typing 3s steps(40,end), blink 0.7s infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bg-music" loop>
+    <source src="kb.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container" id="main-card">
+
+    <h1>Kshithija 💖</h1>
+
+    <div class="slideshow">
+        <img id="slide-img" src="kb.jpg">
+    </div>
+
+    <h2 style="margin-top:20px;">Will you be my Valentine? 💌</h2>
+
+    <button onclick="playMusic()">🎵 Play Our Song</button>
+    <br>
+    <button id="yes-btn">Yes 💍</button>
+    <button id="no-btn">No 😅</button>
+
+</div>
+
+<script>
+
+/* Stars */
+for (let i = 0; i < 120; i++) {
+    let star = document.createElement("div");
+    star.className = "star";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.animationDuration = (Math.random()*3+2) + "s";
+    document.body.appendChild(star);
+}
+
+/* Floating hearts */
+setInterval(()=>{
+    let heart = document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="💗";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),8000);
+},800);
+
+/* Slideshow */
+const images = ["kb.jpg","kb2.jpg","kb3.jpg"];
+let index = 0;
+
+setInterval(()=>{
+    index = (index + 1) % images.length;
+    document.getElementById("slide-img").src = images[index];
+},3000);
+
+/* Play Music */
+function playMusic(){
+    document.getElementById("bg-music").play();
+}
+
+/* Runaway No Button */
+document.getElementById("no-btn").addEventListener("mouseover",function(){
+    this.style.position="fixed";
+    this.style.left=Math.random()*80+"vw";
+    this.style.top=Math.random()*80+"vh";
+});
+
+/* YES CLICK */
+document.getElementById("yes-btn").addEventListener("click",function(){
+
+    document.getElementById("bg-music").play();
+
+    document.getElementById("main-card").innerHTML = `
+        <div style="font-size:80px;">💍</div>
+        <h1 class="typewriter">You just made me the happiest person alive 💖</h1>
+        <p style="margin-top:20px;">Forever starts now ✨</p>
+    `;
+
+    fireworks();
+});
+
+/* Fireworks */
+function fireworks(){
+    for(let i=0;i<80;i++){
+        let spark=document.createElement("div");
+        spark.innerHTML="✨";
+        spark.style.position="fixed";
+        spark.style.left=Math.random()*100+"vw";
+        spark.style.top=Math.random()*100+"vh";
+        spark.style.fontSize="24px";
+        spark.style.animation="explode 1.5s forwards";
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),1500);
+    }
+}
+
+document.head.insertAdjacentHTML("beforeend",`
+<style>
+@keyframes explode{
+    from{transform:scale(0);opacity:1;}
+    to{transform:scale(2);opacity:0;}
+}
+</style>
+`);
+
+</script>
+
+</body>
+</html>
